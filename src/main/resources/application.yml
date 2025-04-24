@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ClimaApi
+
+openweathermap:
+  api:
+    key: 81d1b0fa77cd0946193088027cb44539
+    url: https://api.openweathermap.org/data/2.5/weather
+
