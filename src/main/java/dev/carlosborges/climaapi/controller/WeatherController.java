@@ -1,12 +1,14 @@
-package dev.carlosborges.climaapi.controller;  // Pacote onde a classe de controlador vai ficar
+package dev.carlosborges.climaapi.controller;
 
+import dev.carlosborges.climaapi.model.WeatherResponse;
 import dev.carlosborges.climaapi.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 @RestController
 @RequestMapping("/weather")
@@ -15,9 +17,10 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
+    // Corrigido: Usando @PathVariable para pegar o parâmetro da URL
     @GetMapping("/{city}")
-    public ResponseEntity<String> getWeather(@PathVariable String city) {
-        String weatherData = weatherService.getWeather(city);
-        return ResponseEntity.ok(weatherData);  // Retorna a resposta da API
+    public WeatherResponse getWeather(@PathVariable String city) throws JSONException, UnsupportedEncodingException {
+        String decodedCity = URLDecoder.decode(city, "UTF-8");
+        return weatherService.getWeather(decodedCity);
     }
 }
