@@ -17,7 +17,7 @@ Sistema em **Java** que permite buscar informações climáticas de uma cidade u
 - 🔍 Busca de cidade informada pelo usuário
 - 🌡️ Exibição de:
   - Temperatura atual
-  - Umidade do ar
+  - Sensação Térmica
   - Previsão do tempo (condições climáticas)
 - 🌐 Integração com serviço externo de dados climáticos
 
